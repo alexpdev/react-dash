@@ -5,7 +5,6 @@ import { faReact, } from "@fortawesome/free-brands-svg-icons";
 import { Col, Row, Image, Button, Container, Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
-import GitHubButton from 'react-github-btn';
 
 import { routes } from "../routes";
 import ReactHero from "../assets/img/technologies/react-hero-logo.svg";
@@ -19,14 +18,13 @@ const MainPage = () => {
             <Image src={ReactHero} />
             <span className="ms-2 brand-text d-none d-md-inline">Data Dashboard</span>
           </Navbar.Brand>
-
           <div className="d-flex align-items-center">
             <Navbar.Collapse id="navbar-default-primary">
               <Nav className="navbar-nav-hover align-items-lg-center">
-                <Nav.Link as={HashLink} to="#features">item1</Nav.Link>
-                <Nav.Link as={HashLink} to="#pages">item2</Nav.Link>
-                <Nav.Link as={HashLink} to="#folder" className="d-sm-none d-xl-inline">item3</Nav.Link>
-                <Nav.Link as={HashLink} to="#getting-started">item4</Nav.Link>
+                <Nav.Link as={HashLink} to="#">item1</Nav.Link>
+                <Nav.Link as={HashLink} to="#">item2</Nav.Link>
+                <Nav.Link as={HashLink} to="#" className="d-sm-none d-xl-inline">item3</Nav.Link>
+                <Nav.Link as={HashLink} to="#">item4</Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </div>
@@ -42,11 +40,17 @@ const MainPage = () => {
                 <Button variant="secondary" as={Link} to={routes.DashboardOverview.path} className="text-dark me-3">
                   Explore <FontAwesomeIcon icon={faExternalLinkAlt} className="d-none d-sm-inline ms-1" />
                 </Button>
-                <GitHubButton className="mt-lg-2" href="https://github.com/themesberg/volt-react-dashboard" data-size="large" data-show-count="true" aria-label="Star themesberg/volt-react-dashboard on GitHub">Github</GitHubButton>
               </div>
               <div className="d-flex justify-content-center flex-column mb-6 mb-lg-5 mt-5">
                 <div className="text-center">
                   <Button as={Link} to={routes.Forms.path} variant="secondary" className="mb-5 mb-lg-0" target="_blank"><FontAwesomeIcon icon={faReact} className="me-1" /> Components examples</Button>
+                </div>
+              </div>
+              <div className="d-flex justify-content-center flex-column mb-6 mb-lg-5 mt-5">
+                <div className="text-center">
+                  <Button variant="secondary" as={Link} to={routes.Signin.path} className="text-dark me-3">
+                    SignIn 
+                  </Button>
                 </div>
               </div>
             </Col>

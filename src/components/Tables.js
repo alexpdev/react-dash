@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown, faAngleUp, faArrowDown, faArrowUp, faEdit, faEllipsisH, faExternalLinkAlt, faEye, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { Col, Row, Nav, Card, Image, Button, Table, Dropdown, ProgressBar, Pagination, ButtonGroup } from 'react-bootstrap';
@@ -186,6 +186,115 @@ export const RankingTable = () => {
     </Card>
   );
 };
+
+export const DataTable = () => {
+  const [data, setData] = useState([]);
+  
+  useEffect(() => {
+    fetch("http://localhost:5000/api/data").then( response => {
+      setData(response.json())
+    })
+  }, [])
+  
+  if (!data) {
+    return <pre>Loading...</pre>
+  }
+  
+  const TableRow = (props) => {
+    const customer = props["Customer Name"];
+    const product = props["Product Description"];
+    const salesRep = props["Sales Rep Desc"];
+    const orderDate = props["Order Date"];
+    const state = props["Ship-To State"];
+    const orderQty = props["Order Qty"];
+    const sales = props["Sales"];
+    
+    return (
+    <tr>
+      <td>
+        <Card.Link as={Link} to={routes.Invoice.path} className="fw-normal">
+          {customer}
+        </Card.Link>
+      </td>
+      <td>
+        <span className="fw-normal">
+          {product}
+        </span>
+      </td>
+      <td>
+        <span className="fw-normal">
+          {salesRep}
+        </span>
+      </td>
+      <td>
+        <span className="fw-normal">
+          {orderDate}
+        </span>
+      </td>
+      <td>
+        <span className="fw-normal">
+          ${parseFloat(sales).toFixed(2)}
+        </span>
+      </td>
+      <td>
+        <span className='fw-normal'>
+          {state}
+        </span>
+      </td>
+      <td>
+        <span className='fw-normal'>
+          {orderQty}
+        </span>
+      </td>
+    </tr>
+    )
+  }
+  
+  return (
+    <Card border="light" className="table-wrapper table-responsive shadow-sm">
+      <Card.Body className="pt-0">
+        <Table hover className="user-table align-items-center">
+          <thead>
+            <tr>
+              <th className="border-bottom">Customer</th>
+              <th className="border-bottom">Product</th>
+              <th className="border-bottom">Sales Rep</th>
+              <th className="border-bottom">Order Date</th>
+              <th className="border-bottom">Sales</th>
+              <th className="border-bottom">State</th>
+              <th className="border-bottom">Order Qty</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.map(t => <TableRow key={`transaction-${t.invoiceNumber}`} props={t} />)}
+          </tbody>
+        </Table>
+        <Card.Footer className="px-3 border-0 d-lg-flex align-items-center justify-content-between">
+          <Nav>
+            <Pagination className="mb-2 mb-lg-0">
+              <Pagination.Prev>
+                Previous
+              </Pagination.Prev>
+              <Pagination.Item active>1</Pagination.Item>
+              <Pagination.Item>2</Pagination.Item>
+              <Pagination.Item>3</Pagination.Item>
+              <Pagination.Item>4</Pagination.Item>
+              <Pagination.Item>5</Pagination.Item>
+              <Pagination.Next>
+                Next
+              </Pagination.Next>
+            </Pagination>
+          </Nav>
+          <small className="fw-bold">
+            Showing <b>{data.length}</b> out of <b>25</b> entries
+          </small>
+        </Card.Footer>
+      </Card.Body>
+    </Card>
+  )
+}
+
+
 
 export const TransactionsTable = () => {
   const totalTransactions = transactions.length;

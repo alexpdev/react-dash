@@ -96,7 +96,7 @@ const SideBar = (props = {}) => {
               </Nav.Link>
             </div>
             <Nav className="flex-column pt-3 pt-md-0">
-              <NavItem title="Volt React" link={routes.Presentation.path} image={ReactHero} />
+              <NavItem title="Dash" link={routes.MainPage.path} image={ReactHero} />
 
               <NavItem title="Overview" link={routes.DashboardOverview.path} icon={faChartPie} />
               <NavItem title="Transactions" icon={faHandHoldingUsd} link={routes.Transactions.path} />

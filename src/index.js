@@ -14,7 +14,7 @@
 // * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. Please contact us to request a removal.
 
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { HashRouter } from "react-router-dom";
 
 // core styles
@@ -25,11 +25,11 @@ import "react-datetime/css/react-datetime.css";
 
 import HomePage from "./pages/HomePage";
 import ScrollToTop from "./components/ScrollToTop";
+const root = ReactDOM.createRoot(document.getElementById("root"))
 
-ReactDOM.render(
+root.render(
   <HashRouter>
     <ScrollToTop />
     <HomePage />
   </HashRouter>,
-  document.getElementById("root")
 );

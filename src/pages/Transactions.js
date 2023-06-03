@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faCog, faHome, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Col, Row, Form, Button, ButtonGroup, Breadcrumb, InputGroup, Dropdown } from 'react-bootstrap';
 
-import { TransactionsTable } from "../components/Tables";
+import { DataTable } from "../components/Tables";
 
 const Transactions = () => {
   return (
@@ -20,7 +20,6 @@ const Transactions = () => {
         </div>
         <div className="btn-toolbar mb-2 mb-md-0">
           <ButtonGroup>
-            <Button variant="outline-primary" size="sm">Share</Button>
             <Button variant="outline-primary" size="sm">Export</Button>
           </ButtonGroup>
         </div>
@@ -56,7 +55,7 @@ const Transactions = () => {
         </Row>
       </div>
 
-      <TransactionsTable />
+      <DataTable />
     </>
   );
 };
